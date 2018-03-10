@@ -1,0 +1,591 @@
+
+
+
+
+
+
+
+
+
+<!DOCTYPE HTML>
+<html>
+<head>
+<base href="http://www.vybory.izbirkom.ru/">
+<title>Сведения о проводящихся выборах и референдумах</title>
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="cache-control" content="no-cache">
+<meta http-equiv="expires" content="0">
+
+<script type="text/javascript">
+
+	var st1 = null; // переменная, хранящая ссылку на SortableTable, !=null для сортируемых таблиц
+
+	function getXls() {
+
+		var sortorder = "0";
+		if ((st1!=null)&&(st1.sortDesc!=null)) {
+
+			if (st1.sortDesc) {
+				sortorder = "1";
+			}
+			else if (!st1.sortDesc) {
+				sortorder = "-1";
+			}
+		}
+
+		
+
+		window.location.assign("http://www.vybory.izbirkom.ru/servlet/ExcelReportVersion?"+
+								"region=0&"+
+								"sub_region=0&"+
+														
+								"global=true&"+
+								"vrn=100100067795849&"+
+								"tvd=2012000295675&"+
+								"type=233&"+
+								"vibid=2012000295675&"+
+								"condition=&"+
+								"action=show&"+
+								"version=null&"+
+								"prver=0&"+
+								"sortorder="+sortorder);
+	}
+	
+</script>
+
+</head>
+
+<body text="#000000" link="#0000ff" vlink="#0000ff" alink="#ff0000" leftmargin="0" marginwidth="0" topmargin="0" marginheight="0" bottommargin="0">
+
+<table cellpadding="0" cellspacing="0" width="100%" border="0">
+	<tr>
+		<td align="center" width="100%">
+						
+		</td>
+	</tr>
+</table>
+	
+			
+
+
+
+
+
+<link href="header/00/00.css" rel="stylesheet" type="text/css" />
+<link type="text/css" rel="stylesheet" href="header/00/fonts/PTS75F_stylesheet.css"/>
+
+<div class="ib-header">
+    <div class="ib-header-wrapper">
+        <a class="ib-header-cik" href="http://cikrf.ru">
+            <img src="header/00/header_bg.jpg" alt=""/>
+        </a>
+		<a class="ib-header-link" href="http://www.vybory.izbirkom.ru/region/izbirkom">Выборы, референдумы и иные формы прямого волеизъявления</a>
+		
+    </div>
+</div>
+	
+
+<table width="100%" cellpadding="0" cellspacing="0" height="80%" style="padding-left: 3px; padding-right: 3px;">
+
+
+	
+	<tr valign="top" height="20px">
+		<td width="100%" align="center" height="20px" valign="top"><!-- history -->
+			<a href=region/izbirkom?action=show&root_a=null&vrn=100100067795849&region=0&global=true&type=0&prver=0&pronetvd=0>ЦИК России</a> &gt; <a href=region/izbirkom?action=show&root_a=null&vrn=100100067795849&region=0&global=true&type=0&root=1000001&prver=0&pronetvd=0&tvd=100100067795855>Республика Адыгея (Адыгея)</a> &gt; <a href=region/izbirkom?action=show&root_a=null&vrn=100100067795849&region=0&global=true&type=0&root=1000002&prver=0&pronetvd=0&tvd=100100067795856>ОИК №1</a> &gt; <a href=region/izbirkom?action=show&root_a=null&vrn=100100067795849&region=0&global=true&type=0&root=12000001&prver=0&pronetvd=0&tvd=2012000295675>Адыгейская</a>
+		</td>
+	</tr>
+	
+
+	
+	<tr valign="top" height="20px">
+		<td width="100%" align="center" height="20px" valign="top">
+		
+			Для просмотра данных по участковым избирательным комиссиям перейдите на <a href="http://www.vybory.izbirkom.ru/region/izbirkom?action=show&amp;global=true&amp;root=12000001&amp;tvd=2012000295675&amp;vrn=100100067795849&amp;prver=0&amp;pronetvd=0&amp;region=1&amp;sub_region=1&amp;type=233&amp;vibid=2012000295675">сайт избирательной комиссии субъекта Российской Федерации</a>
+
+		
+		</td>
+	</tr>
+	
+
+	
+	<tr valign="top" align="left">
+		<td >
+				
+			<a href="javascript:getXls();">Версия для печати</a>
+			<br><br>
+				
+		</td>
+	</tr>
+	
+	<tr valign="top" height="100%">
+		<td valign="top" height="100%">
+			<link href="css/233.css" rel="stylesheet" type="text/css"><script type="text/javascript" src="js/sorter.js"></script>
+<table border="0" cellpadding="3" width="100%" cellspacing="1" bgcolor="white">
+   <tr class="w2">
+      <td bgcolor="#555555" class="headers" align="center"><b>Сводная таблица итогов голосования по федеральному избирательному округу</b>
+      </td>
+   </tr>
+   <tr class="w2">
+      <td bgcolor="#555555" class="headers" align="center"><b>Выборы депутатов Государственной Думы Федерального Собрания Российской Федерации седьмого созыва</b>
+      </td>
+   </tr>
+</table>
+<table width="100%">
+   <tr>
+      <td align="center">
+					Дата голосования:&nbsp; 18.09.2016</td>
+   </tr>
+</table>
+<table border="0" cellpadding="5" cellspacing="1" width="100%" bgcolor="ffffff">
+   <tr style="padding:0;border-spacing:0;height:2px;">
+      <td background="img/e.gif" colspan="2" style="padding:0;border-spacing:0;height:2px;"></td>
+   </tr>
+   <tr bgcolor="eeeeee">
+      <td valign="top" width="45%"><b>Наименование избирательной комиссии</b>
+      </td>
+      <td>Адыгейская</td>
+   </tr>
+   <tr style="padding:0;border-spacing:0;height:2px;">
+      <td background="img/e.gif" colspan="2" style="padding:0;border-spacing:0;height:2px;"></td>
+   </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%" height="20px" bgcolor="white">
+   <tr class="w2">
+      <td bgcolor="#555555" class="headers" align="right">	
+	                	&nbsp;
+	                </td>
+   </tr>
+</table>
+<table style="width:100%;border-color:#000000" vspace="0" cellpadding="0" cellspacing="0" border="1px">
+   <tr style="height:100%" valign="top" align="left">
+      <td style="height:100%;" valign="top" align="left">
+         <table border="0" bgcolor="#ffffff" cellpadding="2" cellspacing="1" align="left" vspace="0">
+            <tr bgcolor="#FFFFFF">
+               <td style="color:black" align="center" width="200" colspan="2"></td>
+               <td style="color:black" align="center">
+                  <nobr><b>Сумма</b>
+                  </nobr>
+               </td>
+            </tr>
+            <tr bgcolor="#CCCCCC">
+               <td width="5%" style="color:black">
+                  <nobr>1</nobr>
+               </td>
+               <td style="color:black" align="left" width="50">
+                  <nobr>Число избирателей, внесенных в список избирателей на момент окончания голосования</nobr>
+               </td>
+               <td align="right" style="color:black">
+                  <nobr><b>11932</b>
+                  </nobr><br>
+               </td>
+            </tr>
+            <tr bgcolor="#FFFFFF">
+               <td width="5%" style="color:black">
+                  <nobr>2</nobr>
+               </td>
+               <td style="color:black" align="left" width="50">
+                  <nobr>Число избирательных бюллетеней, полученных участковой избирательной комиссией</nobr>
+               </td>
+               <td align="right" style="color:black">
+                  <nobr><b>10778</b>
+                  </nobr><br>
+               </td>
+            </tr>
+            <tr bgcolor="#CCCCCC">
+               <td width="5%" style="color:black">
+                  <nobr>3</nobr>
+               </td>
+               <td style="color:black" align="left" width="50">
+                  <nobr>Число избирательных бюллетеней, выданных избирателям, проголосовавшим досрочно</nobr>
+               </td>
+               <td align="right" style="color:black">
+                  <nobr><b>0</b>
+                  </nobr><br>
+               </td>
+            </tr>
+            <tr bgcolor="#FFFFFF">
+               <td width="5%" style="color:black">
+                  <nobr>4</nobr>
+               </td>
+               <td style="color:black" align="left" width="50">
+                  <nobr>Число избирательных бюллетеней, выданных в помещении для голосования в день голосования</nobr>
+               </td>
+               <td align="right" style="color:black">
+                  <nobr><b>9135</b>
+                  </nobr><br>
+               </td>
+            </tr>
+            <tr bgcolor="#CCCCCC">
+               <td width="5%" style="color:black">
+                  <nobr>5</nobr>
+               </td>
+               <td style="color:black" align="left" width="50">
+                  <nobr>Число избирательных бюллетеней, выданных вне помещения для голосования в день голосования </nobr>
+               </td>
+               <td align="right" style="color:black">
+                  <nobr><b>198</b>
+                  </nobr><br>
+               </td>
+            </tr>
+            <tr bgcolor="#FFFFFF">
+               <td width="5%" style="color:black">
+                  <nobr>6</nobr>
+               </td>
+               <td style="color:black" align="left" width="50">
+                  <nobr>Число погашенных избирательных бюллетеней</nobr>
+               </td>
+               <td align="right" style="color:black">
+                  <nobr><b>1445</b>
+                  </nobr><br>
+               </td>
+            </tr>
+            <tr bgcolor="#CCCCCC">
+               <td width="5%" style="color:black">
+                  <nobr>7</nobr>
+               </td>
+               <td style="color:black" align="left" width="50">
+                  <nobr>Число избирательных бюллетеней, содержащихся в переносных ящиках для голосования </nobr>
+               </td>
+               <td align="right" style="color:black">
+                  <nobr><b>198</b>
+                  </nobr><br>
+               </td>
+            </tr>
+            <tr bgcolor="#FFFFFF">
+               <td width="5%" style="color:black">
+                  <nobr>8</nobr>
+               </td>
+               <td style="color:black" align="left" width="50">
+                  <nobr>Число избирательных бюллетеней, содержащихся в стационарных ящиках для голосования</nobr>
+               </td>
+               <td align="right" style="color:black">
+                  <nobr><b>9135</b>
+                  </nobr><br>
+               </td>
+            </tr>
+            <tr bgcolor="#CCCCCC">
+               <td width="5%" style="color:black">
+                  <nobr>9</nobr>
+               </td>
+               <td style="color:black" align="left" width="50">
+                  <nobr>Число недействительных избирательных бюллетеней</nobr>
+               </td>
+               <td align="right" style="color:black">
+                  <nobr><b>38</b>
+                  </nobr><br>
+               </td>
+            </tr>
+            <tr bgcolor="#FFFFFF">
+               <td width="5%" style="color:black">
+                  <nobr>10</nobr>
+               </td>
+               <td style="color:black" align="left" width="50">
+                  <nobr>Число действительных избирательных бюллетеней</nobr>
+               </td>
+               <td align="right" style="color:black">
+                  <nobr><b>9295</b>
+                  </nobr><br>
+               </td>
+            </tr>
+            <tr bgcolor="#CCCCCC">
+               <td width="5%" style="color:black">
+                  <nobr>11</nobr>
+               </td>
+               <td style="color:black" align="left" width="50">
+                  <nobr>Число открепительных удостоверений, полученных участковой избирательной комиссией</nobr>
+               </td>
+               <td align="right" style="color:black">
+                  <nobr><b>160</b>
+                  </nobr><br>
+               </td>
+            </tr>
+            <tr bgcolor="#FFFFFF">
+               <td width="5%" style="color:black">
+                  <nobr>12</nobr>
+               </td>
+               <td style="color:black" align="left" width="50">
+                  <nobr>Число открепительных удостоверений, выданных на избирательном участке до дня голосования</nobr>
+               </td>
+               <td align="right" style="color:black">
+                  <nobr><b>32</b>
+                  </nobr><br>
+               </td>
+            </tr>
+            <tr bgcolor="#CCCCCC">
+               <td width="5%" style="color:black">
+                  <nobr>13</nobr>
+               </td>
+               <td style="color:black" align="left" width="50">
+                  <nobr>Число избирателей, проголосовавших по открепительным удостоверениям на избирательном участке</nobr>
+               </td>
+               <td align="right" style="color:black">
+                  <nobr><b>9</b>
+                  </nobr><br>
+               </td>
+            </tr>
+            <tr bgcolor="#FFFFFF">
+               <td width="5%" style="color:black">
+                  <nobr>14</nobr>
+               </td>
+               <td style="color:black" align="left" width="50">
+                  <nobr>Число погашенных неиспользованных открепительных удостоверений</nobr>
+               </td>
+               <td align="right" style="color:black">
+                  <nobr><b>128</b>
+                  </nobr><br>
+               </td>
+            </tr>
+            <tr bgcolor="#CCCCCC">
+               <td width="5%" style="color:black">
+                  <nobr>15</nobr>
+               </td>
+               <td style="color:black" align="left" width="50">
+                  <nobr>Число открепительных удостоверений, выданных избирателям территориальной избирательной комиссией</nobr>
+               </td>
+               <td align="right" style="color:black">
+                  <nobr><b>6</b>
+                  </nobr><br>
+               </td>
+            </tr>
+            <tr bgcolor="#FFFFFF">
+               <td width="5%" style="color:black">
+                  <nobr>16</nobr>
+               </td>
+               <td style="color:black" align="left" width="50">
+                  <nobr>Число утраченных открепительных удостоверений</nobr>
+               </td>
+               <td align="right" style="color:black">
+                  <nobr><b>0</b>
+                  </nobr><br>
+               </td>
+            </tr>
+            <tr bgcolor="#CCCCCC">
+               <td width="5%" style="color:black">
+                  <nobr>17</nobr>
+               </td>
+               <td style="color:black" align="left" width="50">
+                  <nobr>Число утраченных избирательных бюллетеней</nobr>
+               </td>
+               <td align="right" style="color:black">
+                  <nobr><b>0</b>
+                  </nobr><br>
+               </td>
+            </tr>
+            <tr bgcolor="#FFFFFF">
+               <td width="5%" style="color:black">
+                  <nobr>18</nobr>
+               </td>
+               <td style="color:black" align="left" width="50">
+                  <nobr>Число избирательных бюллетеней, не учтенных при получении </nobr>
+               </td>
+               <td align="right" style="color:black">
+                  <nobr><b>0</b>
+                  </nobr><br>
+               </td>
+            </tr>
+            <tr bgcolor="#CCCCCC">
+               <td style="color:black"></td>
+               <td style="color:black" colspan="2">
+                  <nobr><b>&nbsp;</b>
+                  </nobr>
+               </td>
+            </tr>
+            <tr bgcolor="#FFFFFF">
+               <td width="5%" style="color:black">
+                  <nobr>19</nobr>
+               </td>
+               <td style="color:black" align="left" width="50">
+                  <nobr>1. ВСЕРОССИЙСКАЯ ПОЛИТИЧЕСКАЯ ПАРТИЯ "РОДИНА"</nobr>
+               </td>
+               <td align="right" style="color:black">
+                  <nobr><b>9</b>
+                  </nobr><br>0.10%
+												</td>
+            </tr>
+            <tr bgcolor="#CCCCCC">
+               <td width="5%" style="color:black">
+                  <nobr>20</nobr>
+               </td>
+               <td style="color:black" align="left" width="50">
+                  <nobr>2. Политическая партия КОММУНИСТИЧЕСКАЯ ПАРТИЯ КОММУНИСТЫ РОССИИ</nobr>
+               </td>
+               <td align="right" style="color:black">
+                  <nobr><b>49</b>
+                  </nobr><br>0.53%
+												</td>
+            </tr>
+            <tr bgcolor="#FFFFFF">
+               <td width="5%" style="color:black">
+                  <nobr>21</nobr>
+               </td>
+               <td style="color:black" align="left" width="50">
+                  <nobr>3. Политическая партия "Российская партия пенсионеров за справедливость"</nobr>
+               </td>
+               <td align="right" style="color:black">
+                  <nobr><b>17</b>
+                  </nobr><br>0.18%
+												</td>
+            </tr>
+            <tr bgcolor="#CCCCCC">
+               <td width="5%" style="color:black">
+                  <nobr>22</nobr>
+               </td>
+               <td style="color:black" align="left" width="50">
+                  <nobr>4. Всероссийская политическая партия "ЕДИНАЯ РОССИЯ"</nobr>
+               </td>
+               <td align="right" style="color:black">
+                  <nobr><b>7431</b>
+                  </nobr><br>79.62%
+												</td>
+            </tr>
+            <tr bgcolor="#FFFFFF">
+               <td width="5%" style="color:black">
+                  <nobr>23</nobr>
+               </td>
+               <td style="color:black" align="left" width="50">
+                  <nobr>5. Политическая партия "Российская экологическая партия "Зеленые"</nobr>
+               </td>
+               <td align="right" style="color:black">
+                  <nobr><b>10</b>
+                  </nobr><br>0.11%
+												</td>
+            </tr>
+            <tr bgcolor="#CCCCCC">
+               <td width="5%" style="color:black">
+                  <nobr>24</nobr>
+               </td>
+               <td style="color:black" align="left" width="50">
+                  <nobr>6. Политическая партия "Гражданская Платформа"</nobr>
+               </td>
+               <td align="right" style="color:black">
+                  <nobr><b>5</b>
+                  </nobr><br>0.05%
+												</td>
+            </tr>
+            <tr bgcolor="#FFFFFF">
+               <td width="5%" style="color:black">
+                  <nobr>25</nobr>
+               </td>
+               <td style="color:black" align="left" width="50">
+                  <nobr>7. Политическая партия ЛДПР - Либерально-демократическая партия России</nobr>
+               </td>
+               <td align="right" style="color:black">
+                  <nobr><b>733</b>
+                  </nobr><br>7.85%
+												</td>
+            </tr>
+            <tr bgcolor="#CCCCCC">
+               <td width="5%" style="color:black">
+                  <nobr>26</nobr>
+               </td>
+               <td style="color:black" align="left" width="50">
+                  <nobr>8. Политическая партия "Партия народной свободы" (ПАРНАС)</nobr>
+               </td>
+               <td align="right" style="color:black">
+                  <nobr><b>8</b>
+                  </nobr><br>0.09%
+												</td>
+            </tr>
+            <tr bgcolor="#FFFFFF">
+               <td width="5%" style="color:black">
+                  <nobr>27</nobr>
+               </td>
+               <td style="color:black" align="left" width="50">
+                  <nobr>9. Всероссийская политическая партия "ПАРТИЯ РОСТА"</nobr>
+               </td>
+               <td align="right" style="color:black">
+                  <nobr><b>10</b>
+                  </nobr><br>0.11%
+												</td>
+            </tr>
+            <tr bgcolor="#CCCCCC">
+               <td width="5%" style="color:black">
+                  <nobr>28</nobr>
+               </td>
+               <td style="color:black" align="left" width="50">
+                  <nobr>10. Общественная организация Всероссийская политическая партия "Гражданская Сила"</nobr>
+               </td>
+               <td align="right" style="color:black">
+                  <nobr><b>6</b>
+                  </nobr><br>0.06%
+												</td>
+            </tr>
+            <tr bgcolor="#FFFFFF">
+               <td width="5%" style="color:black">
+                  <nobr>29</nobr>
+               </td>
+               <td style="color:black" align="left" width="50">
+                  <nobr>11. Политическая партия "Российская объединенная демократическая партия "ЯБЛОКО"</nobr>
+               </td>
+               <td align="right" style="color:black">
+                  <nobr><b>24</b>
+                  </nobr><br>0.26%
+												</td>
+            </tr>
+            <tr bgcolor="#CCCCCC">
+               <td width="5%" style="color:black">
+                  <nobr>30</nobr>
+               </td>
+               <td style="color:black" align="left" width="50">
+                  <nobr>12. Политическая партия "КОММУНИСТИЧЕСКАЯ ПАРТИЯ РОССИЙСКОЙ ФЕДЕРАЦИИ"</nobr>
+               </td>
+               <td align="right" style="color:black">
+                  <nobr><b>530</b>
+                  </nobr><br>5.68%
+												</td>
+            </tr>
+            <tr bgcolor="#FFFFFF">
+               <td width="5%" style="color:black">
+                  <nobr>31</nobr>
+               </td>
+               <td style="color:black" align="left" width="50">
+                  <nobr>13. Политическая партия "ПАТРИОТЫ РОССИИ"</nobr>
+               </td>
+               <td align="right" style="color:black">
+                  <nobr><b>6</b>
+                  </nobr><br>0.06%
+												</td>
+            </tr>
+            <tr bgcolor="#CCCCCC">
+               <td width="5%" style="color:black">
+                  <nobr>32</nobr>
+               </td>
+               <td style="color:black" align="left" width="50">
+                  <nobr>14. Политическая партия СПРАВЕДЛИВАЯ РОССИЯ</nobr>
+               </td>
+               <td align="right" style="color:black">
+                  <nobr><b>457</b>
+                  </nobr><br>4.90%
+												</td>
+            </tr>
+         </table>
+      </td>
+      <td width="90%">
+         <table border="0" bgcolor="#ffffff" cellpadding="2" cellspacing="1" style="width:100%;overflow:scroll" vspace="0" align="left">
+            <tr bgcolor="#FFFFFF" valign="top"></tr>
+         </table><br>
+      </td>
+   </tr>
+</table>
+		</td>
+	</tr>
+
+</table>
+<br/>
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-26136728-1']);
+  _gaq.push(['_setDomainName', 'izbirkom.ru']);
+  _gaq.push(['_setAllowLinker', true]);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+</body>
+</html>
