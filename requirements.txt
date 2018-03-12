@@ -1,3 +1,7 @@
+jupyter
+matplotlib
 pytest
 pytz
+requests
+scipy
 scrapy

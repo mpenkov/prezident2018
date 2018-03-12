@@ -12,7 +12,7 @@ LOGGER = logging.getLogger(__name__)
 #
 # Set to True to restrict the region to the first one (Adygea).
 #
-TEST = True
+TEST = False
 
 TOP_URL = ("http://www.vybory.izbirkom.ru/region/izbirkom?action=show&global=1"
            "&vrn=100100031793505&region=0&prver=0&pronetvd=null")
