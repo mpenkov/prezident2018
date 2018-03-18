@@ -321,21 +321,13 @@ def now():
 def get_name(root):
     """Return the electorate region, committee number and name."""
     region = join(root.xpath("/html/body/table[2]/tr[1]/td/a[2]/text()").extract())
-    region_ik = join(root.xpath("/html/body/table[2]/tr[1]/td/a[3]/text()").extract())
-    #
-    # Наименование избирательной комиссии
-    #
-    region_ik_long = join(
-        root.xpath("/html/body/table[2]/tr[4]/td/table[3]/tr[2]/td[2]/text()").extract()
-    )
     del root
     return locals()
 
 
 def get_name_uik(root):
     region = join(root.xpath("/html/body/table[3]/tr[1]/td/a[1]/text()").extract())
-    region_ik = join(root.xpath("/html/body/table[3]/tr[1]/td/a[2]/text()").extract())
-    territory_ik = join(root.xpath("/html/body/table[3]/tr[1]/td/a[3]/text()").extract())
+    territory = join(root.xpath("/html/body/table[3]/tr[1]/td/a[2]/text()").extract())
     del root
     return locals()
 

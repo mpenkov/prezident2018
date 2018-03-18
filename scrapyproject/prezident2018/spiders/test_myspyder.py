@@ -157,8 +157,6 @@ def test_parse_turnout_table():
     print(result)
 
     assert result["region"] == "Сахалинская область"
-    # assert result["region_ik"] == "ОИК №1"
-    # assert result["region_ik"] == "Адыгейская"
     assert result["url"] == response.url
     assert result["data_type"] == myspider.TURNOUT_TIK
 
@@ -185,9 +183,7 @@ def test_parse_turnout_table_uik():
     print(result)
 
     assert result["region"] == "Сахалинская область"
-    # assert result["region_ik"] == "ОИК №1"
-    assert result["region_ik"] == "Александровск-Сахалинская"
-    # assert result["territory_ik"] == "Адыгейская"
+    assert result["territory"] == "Александровск-Сахалинская"
 
     assert len(result["row_headers"]) == 14
     assert len(result["column_headers"]) == 4
