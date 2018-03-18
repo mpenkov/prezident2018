@@ -2,6 +2,7 @@
 import os.path as P
 
 import mock
+import pytest
 import scrapy
 
 from . import myspider
@@ -11,9 +12,26 @@ CURR_DIR = P.dirname(P.abspath(__file__))
 
 
 TIK_NAMES = [
-    "Адыгейская", "Гиагинская", "Кошехабльская",
-    "Красногвардейская", "Майкопская районная", "Майкопская городская",
-    "Тахтамукайская", "Теучежская", "Шовгеновская",
+    'Александровск-Сахалинская',
+    'Анивская',
+    'Долинская',
+    'Корсаковская',
+    'Курильская',
+    'Макаровская',
+    'Невельская',
+    'Ногликская',
+    'Охинская',
+    'Поронайская',
+    'Северо-Курильская',
+    'Смирныховская',
+    'Томаринская',
+    'Тымовская',
+    'Углегорская',
+    'Холмская',
+    'Южно-Курильская',
+    'Южно-Сахалинская городская',
+    'Невельская судовая',
+    'Холмская судовая'
 ]
 
 ROW_HEADERS = [
@@ -44,7 +62,7 @@ ROW_HEADERS = [
     'Путин Владимир Владимирович',
 ]
 
-UIK_NAMES = ["УИК №1", "УИК №2", "УИК №3", "УИК №4", "УИК №5", "УИК №6"]
+UIK_NAMES = ["УИК №%d" % x for x in range(1, 15) if x != 4]
 
 
 def mock_response(filename):
@@ -63,6 +81,7 @@ def mock_response(filename):
     return response
 
 
+@pytest.mark.skip(reason='results not available yet')
 def test_parse_results_regional_ik():
     response = mock_response("regional_ik_results.html")
 
@@ -116,6 +135,7 @@ def test_parse_results_regional_ik():
     assert result["data"][0][1] == 12021
 
 
+@pytest.mark.skip(reason='results not available yet')
 def test_parse_results_territorial_ik():
     response = mock_response("territorial_ik_results.html")
     result = myspider.parse_voting_summary_table(response, data_type=myspider.RESULTS_UIK)
@@ -136,7 +156,7 @@ def test_parse_turnout_table():
     result = myspider.parse_turnout_table(response, data_type=myspider.TURNOUT_TIK)
     print(result)
 
-    assert result["region"] == "Республика Адыгея (Адыгея)"
+    assert result["region"] == "Сахалинская область"
     # assert result["region_ik"] == "ОИК №1"
     # assert result["region_ik"] == "Адыгейская"
     assert result["url"] == response.url
@@ -144,15 +164,15 @@ def test_parse_turnout_table():
 
     row_headers = result["row_headers"]
     print(row_headers)
-    assert len(row_headers) == 10
+    assert len(row_headers) == 21
 
     col_headers = result["column_headers"]
     assert len(col_headers) == 4
 
-    assert result["data"][0][0] == 7.32
-    assert result["data"][1][1] == 24.85
-    assert result["data"][2][2] == 38.78
-    assert result["data"][3][3] == 46.57
+    assert result["data"][0][0] == 12.01
+    assert result["data"][1][1] == -1
+    assert result["data"][2][2] == -1
+    assert result["data"][3][3] == -1
 
     assert "md5" in result
 
@@ -164,12 +184,12 @@ def test_parse_turnout_table_uik():
     result = myspider.parse_turnout_table(response, data_type=myspider.TURNOUT_UIK)
     print(result)
 
-    assert result["region"] == "Республика Адыгея (Адыгея)"
+    assert result["region"] == "Сахалинская область"
     # assert result["region_ik"] == "ОИК №1"
-    assert result["region_ik"] == "Адыгейская"
+    assert result["region_ik"] == "Александровск-Сахалинская"
     # assert result["territory_ik"] == "Адыгейская"
 
-    assert len(result["row_headers"]) == 7
+    assert len(result["row_headers"]) == 14
     assert len(result["column_headers"]) == 4
 
     assert len(result["data"]) == len(result["row_headers"])
@@ -206,6 +226,7 @@ def test_xpaths_turnout_tik():
     assert tik_names == TIK_NAMES
 
 
+@pytest.mark.skip(reason='results not available yet')
 def test_xpaths_tik_names():
     response = mock_response("regional_ik_results.html")
     tik_links = response.selector.xpath(myspider.TIK_XPATH)
@@ -213,6 +234,7 @@ def test_xpaths_tik_names():
     assert tik_names == TIK_NAMES
 
 
+@pytest.mark.skip(reason='results not available yet')
 def test_xpaths_results_tik():
     """Are the xpaths for the regional IK results page specified correctly?"""
     response = mock_response('regional_ik_results.html')
@@ -234,6 +256,7 @@ def test_xpaths_results_tik():
     assert cell == '12021'
 
 
+@pytest.mark.skip(reason='results not available yet')
 def test_xpaths_result_territorial():
     """Are the xpaths for the territorial IK results page specified correctly?"""
     response = mock_response('territorial_ik_results.html')
@@ -274,7 +297,7 @@ def test_xpaths_turnout_regional():
 
     assert row_headers == expected_row_headers
     # assert column_headers == expected_column_headers
-    assert cell == '6.34%'
+    assert cell == '9.57%'
 
 
 def test_xpaths_turnout_territorial():
@@ -293,7 +316,7 @@ def test_xpaths_turnout_territorial():
 
     assert row_headers == expected_row_headers
     # assert column_headers == expected_column_headers
-    assert cell == '5.74%'
+    assert cell == '49.71%'
 
 
 def test_cb_central_ik_home():
@@ -305,7 +328,8 @@ def test_cb_central_ik_home():
         first = things[0]
         assert first.method == 'GET'
     else:
-        assert False, 'have not implemented the real test yet'
+        assert len(things) == 87
+        assert things[0].method == 'GET'
 
 
 def test_cb_region_ik_home():

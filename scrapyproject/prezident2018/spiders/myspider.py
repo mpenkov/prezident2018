@@ -454,3 +454,27 @@ def parse_turnout_table(response, data_type=TURNOUT_TIK):
         }
     )
     return result
+
+
+def main():
+    import argparse
+    import requests
+    import mock
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument('callback')
+    parser.add_argument('url')
+    args = parser.parse_args()
+
+    if not args.callback.startswith('cb_'):
+        parser.error('callback name should start with cb_')
+
+    callback = globals()[args.callback]
+    text = requests.get(args.url).text.encode('utf-8')
+    response = mock.Mock(url=args.url, body=text, selector=scrapy.Selector(text=text))
+    for result in callback(response):
+        print(result)
+
+
+if __name__ == '__main__':
+    main()
