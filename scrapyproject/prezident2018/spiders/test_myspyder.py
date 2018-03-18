@@ -170,9 +170,9 @@ def test_parse_turnout_table():
     assert len(col_headers) == 4
 
     assert result["data"][0][0] == 12.01
-    assert result["data"][1][1] == -1
-    assert result["data"][2][2] == -1
-    assert result["data"][3][3] == -1
+    assert result["data"][1][1] == None
+    assert result["data"][2][2] == None
+    assert result["data"][3][3] == None
 
     assert "md5" in result
 

@@ -341,6 +341,8 @@ def get_name_uik(root):
 
 
 def myfloat(value):
+    if value in ('', None):
+        return None
     try:
         return float(value)
     except ValueError:
