@@ -14,12 +14,9 @@ LOGGER = logging.getLogger(__name__)
 #
 TEST = False
 
-TOP_URL = ("http://www.vybory.izbirkom.ru/region/izbirkom?action=show&global=1"
-           "&vrn=100100031793505&region=0&prver=0&pronetvd=null")
-"""The URL to start the crawl at.
-
-Use the 2012 election for testing, for now.
-"""
+TOP_URL = ("http://www.vybory.izbirkom.ru/region/izbirkom?action=show&root_a=652000016"
+           "&vrn=100100084849062&region=0&global=true&type=0&prver=0&pronetvd=null")
+"""The URL to start the crawl at."""
 
 TURNOUT_REGEX = re.compile(
     "Предварительные сведения об участии избирателей в выборах",
