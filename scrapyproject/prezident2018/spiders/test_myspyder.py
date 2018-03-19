@@ -47,12 +47,6 @@ ROW_HEADERS = (
     'Число бюллетеней в стационарных ящиках для голосования',
     'Число недействительных избирательных бюллетеней',
     'Число действительных избирательных бюллетеней',
-    'Число полученных открепительных  удостоверений',
-    'Число открепительных удостоверений, выданных избирателям на избирательном участке',
-    'Число избирателей, проголосовавших по открепительным удостоверениям',
-    'Число неиспользованных открепительных удостоверений',
-    'Число открепительных удостоверений, выданных избирателям ТИК',
-    'Число утраченных открепительных удостоверений',
     'Число утраченных избирательных бюллетеней',
     'Число избирательных бюллетеней, не учтенных при получении',
     '',
@@ -85,47 +79,19 @@ def mock_response(filename):
     return response
 
 
-@pytest.mark.skip(reason='results not available yet')
 def test_parse_results_regional_ik():
     response = mock_response("regional_ik_results.html")
 
     result = myspider.parse_voting_summary_table(response, data_type=myspider.RESULTS_TIK)
-    print(result)
     assert result["data_type"] == myspider.RESULTS_TIK
     assert result["url"] == response.url
     assert "timestamp" in result
 
-    assert result["region"] == "Республика Адыгея (Адыгея)"
-    #
-    # Not available anymore?  We don't really need it anyway
-    #
-    # assert result["region_ik"] == "ОИК №1"
-    # assert result["region_ik_long"] == "Республика Адыгея (Адыгея) - Адыгейский"
-    assert result["region_ik_long"] == "Республика Адыгея (Адыгея)"
+    assert result["region"] == "Сахалинская область"
 
-    #
-    # 18 stats in total, 14 federal party candidates
-    #
-    # noqa Число избирательных бюллетеней, полученных участковой избирательной комиссией
-    # noqa Число избирательных бюллетеней, выданных избирателям, проголосовавшим досрочно
-    # noqa Число избирательных бюллетеней, выданных в помещении для голосования в день голосования
-    # noqa Число избирательных бюллетеней, выданных вне помещения для голосования в день голосования
-    # noqa Число погашенных избирательных бюллетеней
-    # noqa Число избирательных бюллетеней, содержащихся в переносных ящиках для голосования
-    # noqa Число избирательных бюллетеней, содержащихся в стационарных ящиках для голосования
-    # noqa Число недействительных избирательных бюллетеней
-    # noqa Число действительных избирательных бюллетеней
-    # noqa Число открепительных удостоверений, полученных участковой избирательной комиссией
-    # noqa Число открепительных удостоверений, выданных на избирательном участке до дня голосования
-    # noqa Число избирателей, проголосовавших по открепительным удостоверениям на избирательном участке
-    # noqa Число погашенных неиспользованных открепительных удостоверений
-    # noqa Число открепительных удостоверений, выданных избирателям территориальной избирательной комиссией
-    # noqa Число утраченных открепительных удостоверений
-    # noqa Число утраченных избирательных бюллетеней
-    # noqa Число избирательных бюллетеней, не учтенных при получении
-    #
-    row_headers = result["row_headers"]
-    assert len(row_headers) == 23
+    expected_row_headers = list(ROW_HEADERS)
+    expected_row_headers.pop(0)
+    assert result['row_headers'] == expected_row_headers
 
     # Total value + a value for each
     column_headers = result["column_headers"]
@@ -139,19 +105,16 @@ def test_parse_results_regional_ik():
     assert result["data"][0][1] == 12021
 
 
-@pytest.mark.skip(reason='results not available yet')
 def test_parse_results_territorial_ik():
     response = mock_response("territorial_ik_results.html")
     result = myspider.parse_voting_summary_table(response, data_type=myspider.RESULTS_UIK)
 
-    assert result["region"] == "Республика Адыгея (Адыгея)"
-    # assert result["region_ik"] == "ОИК №1"
-    assert result["region_ik"] == "Адыгейская"
-    # assert result["territory_ik"] == "Адыгейская"
+    assert result["region"] == "Сахалинская область"
+    assert result["territory"] == "Александровск-Сахалинская"
 
-    assert len(result["row_headers"]) == 23
-
-    expected = ['Сумма', 'УИК №1', 'УИК №2', 'УИК №3', 'УИК №4', 'УИК №5', 'УИК №6']
+    expected_row_headers = list(ROW_HEADERS)
+    expected_row_headers.pop(0)
+    assert result["row_headers"] == expected_row_headers
     assert result["column_headers"] == expected
 
 
@@ -226,7 +189,6 @@ def test_xpaths_turnout_tik():
     assert tik_names == list(TIK_NAMES)
 
 
-@pytest.mark.skip(reason='results not available yet')
 def test_xpaths_tik_names():
     response = mock_response("regional_ik_results.html")
     tik_links = response.selector.xpath(myspider.TIK_XPATH)
@@ -234,7 +196,6 @@ def test_xpaths_tik_names():
     assert tik_names == list(TIK_NAMES)
 
 
-@pytest.mark.skip(reason='results not available yet')
 def test_xpaths_results_tik():
     """Are the xpaths for the regional IK results page specified correctly?"""
     response = mock_response('regional_ik_results.html')
@@ -252,11 +213,10 @@ def test_xpaths_results_tik():
 
     assert row_headers == expected_row_headers
     assert column_headers == expected_column_headers
-    assert total == '342734'
-    assert cell == '12021'
+    assert total == '374297'
+    assert cell == '9051'
 
 
-@pytest.mark.skip(reason='results not available yet')
 def test_xpaths_result_territorial():
     """Are the xpaths for the territorial IK results page specified correctly?"""
     response = mock_response('territorial_ik_results.html')
@@ -275,8 +235,8 @@ def test_xpaths_result_territorial():
 
     assert row_headers == expected_row_headers
     assert column_headers == expected_column_headers
-    assert total == '12021'
-    assert cell == '2383'
+    assert total == '9051'
+    assert cell == '173'
 
 
 def test_xpaths_turnout_regional():
