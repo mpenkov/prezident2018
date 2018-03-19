@@ -11,7 +11,7 @@ from . import myspider
 CURR_DIR = P.dirname(P.abspath(__file__))
 
 
-TIK_NAMES = [
+TIK_NAMES = (
     'Александровск-Сахалинская',
     'Анивская',
     'Долинская',
@@ -32,9 +32,10 @@ TIK_NAMES = [
     'Южно-Сахалинская городская',
     'Невельская судовая',
     'Холмская судовая'
-]
+)
+assert len(TIK_NAMES) == 20
 
-ROW_HEADERS = [
+ROW_HEADERS = (
     'Сумма',
     'Число избирателей, включенных в список избирателей',
     'Число избирательных бюллетеней, полученных участковой избирательной комиссией',
@@ -55,14 +56,17 @@ ROW_HEADERS = [
     'Число утраченных избирательных бюллетеней',
     'Число избирательных бюллетеней, не учтенных при получении',
     '',
+    'Бабурин Сергей Николаевич',
+    'Грудинин Павел Николаевич',
     'Жириновский Владимир Вольфович',
-    'Зюганов Геннадий Андреевич',
-    'Миронов Сергей Михайлович',
-    'Прохоров Михаил Дмитриевич',
     'Путин Владимир Владимирович',
-]
+    'Собчак Ксения Анатольевна',
+    'Сурайкин Максим Александрович',
+    'Титов Борис Юрьевич',
+    'Явлинский Григорий Алексеевич',
+)
 
-UIK_NAMES = ["УИК №%d" % x for x in range(1, 15) if x != 4]
+UIK_NAMES = tuple("УИК №%d" % x for x in range(1, 15) if x != 4)
 
 
 def mock_response(filename):
@@ -167,10 +171,10 @@ def test_parse_turnout_table():
     col_headers = result["column_headers"]
     assert len(col_headers) == 4
 
-    assert result["data"][0][0] == 12.01
-    assert result["data"][1][1] == None
-    assert result["data"][2][2] == None
-    assert result["data"][3][3] == None
+    assert result["data"][0][0] == 11.52
+    assert result["data"][1][1] == 27.70
+    assert result["data"][2][2] == 53.39
+    assert result["data"][3][3] == 49.95
 
     assert "md5" in result
 
@@ -219,7 +223,7 @@ def test_xpaths_turnout_tik():
     response = mock_response("regional_ik_turnout.html")
     tik_links = response.selector.xpath(myspider.TURNOUT_TIK_XPATH)
     tik_names = [myspider.join(tl.xpath(".//text()").extract()) for tl in tik_links]
-    assert tik_names == TIK_NAMES
+    assert tik_names == list(TIK_NAMES)
 
 
 @pytest.mark.skip(reason='results not available yet')
@@ -227,7 +231,7 @@ def test_xpaths_tik_names():
     response = mock_response("regional_ik_results.html")
     tik_links = response.selector.xpath(myspider.TIK_XPATH)
     tik_names = [myspider.join(tl.xpath(".//text()").extract()) for tl in tik_links]
-    assert tik_names == TIK_NAMES
+    assert tik_names == list(TIK_NAMES)
 
 
 @pytest.mark.skip(reason='results not available yet')
@@ -236,8 +240,8 @@ def test_xpaths_results_tik():
     response = mock_response('regional_ik_results.html')
     root = response.selector
 
-    expected_row_headers = ROW_HEADERS
-    expected_column_headers = TIK_NAMES
+    expected_row_headers = list(ROW_HEADERS)
+    expected_column_headers = list(TIK_NAMES)
 
     xpaths = myspider.XPATHS[myspider.RESULTS_TIK]
     row_headers = myspider.parse_table_headers(root, xpaths["row_header"])
@@ -258,8 +262,8 @@ def test_xpaths_result_territorial():
     response = mock_response('territorial_ik_results.html')
     root = response.selector
 
-    expected_row_headers = ROW_HEADERS
-    expected_column_headers = UIK_NAMES
+    expected_row_headers = list(ROW_HEADERS)
+    expected_column_headers = list(UIK_NAMES)
 
     xpaths = myspider.XPATHS[myspider.RESULTS_UIK]
 
@@ -280,7 +284,7 @@ def test_xpaths_turnout_regional():
     response = mock_response('regional_ik_turnout.html')
     root = response.selector
 
-    expected_row_headers = TIK_NAMES
+    expected_row_headers = list(TIK_NAMES)
     expected_row_headers.insert(0, 'Наименование ИК')
     expected_row_headers.insert(1, '10.00')
     expected_row_headers.insert(2, 'ВСЕГО, в том числе')
@@ -340,10 +344,9 @@ def test_cb_region_ik_results():
     """Should parse multiple links and summary."""
     response = mock_response('regional_ik_results.html')
     things = list(myspider.cb_region_ik_results(response))
-    assert len(things) == 10
-    assert [thing.method for thing in things[:-1]] == ['GET'] * 9
+    #
+    # The extra +1 is for the results extracted from the page
+    #
+    assert len(things) == 1 + len(TIK_NAMES)
+    assert [thing.method for thing in things[:-1]] == ['GET'] * len(TIK_NAMES)
     assert 'column_headers' in things[-1]
-
-
-def test_cb_intermediate_page_results():
-    pass
