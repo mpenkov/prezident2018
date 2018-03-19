@@ -115,9 +115,30 @@ The dictionary is keyed by what we're trying to parse.
 # The remaining rows are the candidates (parties and people in federal and
 # single-mandate elections, respectively).
 #
-FIRST_STAT = 1
-LAST_STAT = 19
-FIRST_CANDIDATE = 20
+_ROW_HEADERS = (
+    'Сумма',
+    'Число избирателей, включенных в список избирателей',
+    'Число избирательных бюллетеней, полученных участковой избирательной комиссией',
+    'Число избирательных бюллетеней, выданных избирателям, проголосовавшим досрочно',
+    'Число избирательных бюллетеней, выданных в помещении для голосования в день голосования',
+    'Число избирательных бюллетеней, выданных вне помещения для голосования в день голосования',
+    'Число погашенных избирательных бюллетеней',
+    'Число избирательных бюллетеней в переносных ящиках для голосования',
+    'Число бюллетеней в стационарных ящиках для голосования',
+    'Число недействительных избирательных бюллетеней',
+    'Число действительных избирательных бюллетеней',
+    'Число утраченных избирательных бюллетеней',
+    'Число избирательных бюллетеней, не учтенных при получении',
+    '',
+    'Бабурин Сергей Николаевич',
+    'Грудинин Павел Николаевич',
+    'Жириновский Владимир Вольфович',
+    'Путин Владимир Владимирович',
+    'Собчак Ксения Анатольевна',
+    'Сурайкин Максим Александрович',
+    'Титов Борис Юрьевич',
+    'Явлинский Григорий Алексеевич',
+)
 
 BAD_COLUMN = -1
 """Sometimes values are just plain missing.  We can't really skip them,
@@ -372,12 +393,14 @@ def parse_voting_summary_table(response, data_type=RESULTS_TIK):
     column_headers = parse_table_headers(root, xpaths["col_header"])
     LOGGER.debug("column_headers: %r", column_headers)
 
-    stats_rows = list(range(FIRST_STAT, LAST_STAT))
-    votes_rows = list(range(FIRST_CANDIDATE, len(row_headers)))
-    important_rows = stats_rows + votes_rows
-
+    row_names = []
     rows = []
-    for row_number in important_rows:
+    for row_number, row_name in enumerate(_ROW_HEADERS):
+        #
+        # Get rid of two dodgy rows: the top row (totals) and the blank row in the middle.
+        #
+        if row_number == 0 or row_name == '':
+            continue
         #
         # xpath rows use 1-based indexing
         #
@@ -390,14 +413,14 @@ def parse_voting_summary_table(response, data_type=RESULTS_TIK):
             value = parse_table_cell(root, xpaths["cell"], row_number, col_number)
             columns.append(myfloat(value))
 
+        row_names.append(row_name)
         rows.append(columns)
 
-    row_headers = [rh for (i, rh) in enumerate(row_headers) if i in important_rows]
     column_headers.insert(0, "Сумма")
 
     result.update(
         {
-            "row_headers": row_headers, "column_headers": column_headers,
+            "row_headers": row_names, "column_headers": column_headers,
             "data": rows, "data_type": data_type,
             "timestamp": now().isoformat(), "url": url, "md5": md5
         }

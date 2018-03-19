@@ -49,7 +49,6 @@ ROW_HEADERS = (
     'Число действительных избирательных бюллетеней',
     'Число утраченных избирательных бюллетеней',
     'Число избирательных бюллетеней, не учтенных при получении',
-    '',
     'Бабурин Сергей Николаевич',
     'Грудинин Павел Николаевич',
     'Жириновский Владимир Вольфович',
@@ -93,16 +92,13 @@ def test_parse_results_regional_ik():
     expected_row_headers.pop(0)
     assert result['row_headers'] == expected_row_headers
 
-    # Total value + a value for each
-    column_headers = result["column_headers"]
-    assert len(column_headers) == 9 + 1
-
-    for i, _ in enumerate(row_headers):
-        assert len(result["data"][i]) == len(column_headers)
+    assert result["column_headers"][1:] == list(TIK_NAMES)
+    for i, _ in enumerate(result['row_headers']):
+        assert len(result["data"][i]) == len(result['column_headers'])
 
     # Test some individual values
-    assert result["data"][0][0] == 342734
-    assert result["data"][0][1] == 12021
+    assert result["data"][0][0] == 374297
+    assert result["data"][0][1] == 9051
 
 
 def test_parse_results_territorial_ik():
@@ -112,10 +108,12 @@ def test_parse_results_territorial_ik():
     assert result["region"] == "Сахалинская область"
     assert result["territory"] == "Александровск-Сахалинская"
 
+    assert 'Сурайкин Максим Александрович' in result['row_headers']
+
     expected_row_headers = list(ROW_HEADERS)
     expected_row_headers.pop(0)
     assert result["row_headers"] == expected_row_headers
-    assert result["column_headers"] == expected
+    assert result["column_headers"][1:] == list(UIK_NAMES)
 
 
 def test_parse_turnout_table():
@@ -201,7 +199,7 @@ def test_xpaths_results_tik():
     response = mock_response('regional_ik_results.html')
     root = response.selector
 
-    expected_row_headers = list(ROW_HEADERS)
+    expected_row_headers = list(myspider._ROW_HEADERS)
     expected_column_headers = list(TIK_NAMES)
 
     xpaths = myspider.XPATHS[myspider.RESULTS_TIK]
@@ -222,7 +220,7 @@ def test_xpaths_result_territorial():
     response = mock_response('territorial_ik_results.html')
     root = response.selector
 
-    expected_row_headers = list(ROW_HEADERS)
+    expected_row_headers = list(myspider._ROW_HEADERS)
     expected_column_headers = list(UIK_NAMES)
 
     xpaths = myspider.XPATHS[myspider.RESULTS_UIK]
@@ -237,6 +235,8 @@ def test_xpaths_result_territorial():
     assert column_headers == expected_column_headers
     assert total == '9051'
     assert cell == '173'
+
+    assert 'Сурайкин Максим Александрович' in row_headers
 
 
 def test_xpaths_turnout_regional():
